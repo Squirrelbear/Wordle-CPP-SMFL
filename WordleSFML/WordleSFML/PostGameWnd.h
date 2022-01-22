@@ -1,6 +1,7 @@
 #pragma once
 #include "WndInterface.h"
 #include "Button.h"
+#include "HorizontalHistogram.h"
 
 /*
 PostGameWnd class:
@@ -59,5 +60,8 @@ private:
 
 	// Text showing the solution
 	std::unique_ptr<sf::Text> _solutionText;
+
+	// Histogram showing how their result fits with their other victories.
+	std::unique_ptr<HorizontalHistogram> _histogram;
 };
 

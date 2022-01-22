@@ -125,6 +125,8 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GuessGrid.cpp" />
+    <ClCompile Include="HistogramBar.cpp" />
+    <ClCompile Include="HorizontalHistogram.cpp" />
     <ClCompile Include="KeyboardWnd.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PostGameWnd.cpp" />
@@ -137,6 +139,8 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GuessGrid.h" />
+    <ClInclude Include="HistogramBar.h" />
+    <ClInclude Include="HorizontalHistogram.h" />
     <ClInclude Include="KeyboardWnd.h" />
     <ClInclude Include="PostGameWnd.h" />
     <ClInclude Include="PuzzleLetter.h" />

@@ -23,6 +23,13 @@ PostGameWnd::PostGameWnd(const sf::IntRect & bounds, const sf::Font & font, cons
 
 	_buttons.emplace_back(Button(sf::IntRect(bounds.left + bounds.width / 2 - 225, bounds.top + bounds.height * 3 / 4 - 70, 200, 60), "New Word", 0, font));
 	_buttons.emplace_back(Button(sf::IntRect(bounds.left + bounds.width / 2 + 25, bounds.top + bounds.height * 3 / 4 - 70, 200, 60), "Quit", 1, font));
+
+	std::vector<std::pair<int, int>> data{ std::pair<int,int>(1,0),std::pair<int,int>(2,1), std::pair<int,int>(3,4),
+										std::pair<int,int>(4,4), std::pair<int,int>(5,3), std::pair<int,int>(6,0) };
+	sf::IntRect histogramRect = sf::IntRect(bounds.left + bounds.width / 4 + 30, bounds.top + bounds.height / 4 + 10 + 50 + 40 + 10,
+		bounds.width / 2 - 60, bounds.top + bounds.height * 3 / 4 - 70 - (bounds.top + bounds.height / 4 + 10 + 50 + 40));
+
+	_histogram = std::make_unique<HorizontalHistogram>(histogramRect, font, data, wonGame ? attempts-1 : -1);
 }
 
 void PostGameWnd::draw(sf::RenderWindow & renderWindow) const
@@ -31,6 +38,7 @@ void PostGameWnd::draw(sf::RenderWindow & renderWindow) const
 	renderWindow.draw(*_background);
 	renderWindow.draw(*_titleText);
 	renderWindow.draw(*_solutionText);
+	_histogram->draw(renderWindow);
 	for (const auto& button : _buttons) {
 		button.draw(renderWindow);
 	}
