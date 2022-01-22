@@ -1,17 +1,27 @@
 #pragma once
 #include "WndInterface.h"
-#include <random>
 #include "KeyboardWnd.h"
+#include "GuessGrid.h"
 
+/*
+PuzzleWnd class:
+Manages the keyboard and inputs from the user to play the Wordle game.
+
+@author: Peter Mitchell
+@version: 2022.1
+*/
 class PuzzleWnd :
 	public WndInterface
 {
 public:
-	PuzzleWnd(const sf::IntRect& bounds, const sf::Font& font, std::default_random_engine& randomEngine);
+	// Initialises the Puzzle with a new puzzle to be played.
+	PuzzleWnd(const sf::IntRect& bounds, const sf::Font& font, const std::string& solution);
 	virtual ~PuzzleWnd();
 
-	// Inherited via WndInterface
+	// TODO
 	virtual void update(const float deltaTime) override;
+
+	// TODO
 	virtual void draw(sf::RenderWindow & renderWindow) const override;
 
 	/**
@@ -31,8 +41,8 @@ public:
 
 private:
 	const sf::Font& _font;
-	std::default_random_engine& _randomEngine;
 	sf::Text testText;
 	KeyboardWnd _keyboard;
+	GuessGrid _guessGrid;
 };
 

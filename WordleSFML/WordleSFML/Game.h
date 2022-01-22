@@ -4,7 +4,7 @@
 
 /*
 Game class:
-TODO
+Manages instances of the puzzle window.
 
 @author: Peter Mitchell
 @version 2022.1

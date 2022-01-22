@@ -4,15 +4,7 @@ KeyboardWnd::KeyboardWnd(const sf::IntRect& bounds, const sf::Font& font)
 	: WndInterface(bounds)
 {
 	initialiseButtons(font);
-}
-
-
-KeyboardWnd::~KeyboardWnd()
-{
-}
-
-void KeyboardWnd::update(const float deltaTime)
-{
+	_actionID = -1;
 }
 
 void KeyboardWnd::draw(sf::RenderWindow & renderWindow) const
@@ -26,8 +18,7 @@ void KeyboardWnd::handleMousePress(const sf::Vector2i & mousePosition, bool isLe
 {
 	for (auto& button : _buttons) {
 		if (button.isPositionInside(mousePosition)) {
-			int action = button.getActionID();
-			// TODO
+			_actionID = button.getActionID();
 			break;
 		}
 	}
@@ -38,6 +29,13 @@ void KeyboardWnd::handleMouseMove(const sf::Vector2i & mousePosition)
 	for (auto& button : _buttons) {
 		button.setHovering(button.isPositionInside(mousePosition));
 	}
+}
+
+int KeyboardWnd::getActionIDReset()
+{
+	int oldActionID = _actionID;
+	_actionID = -1;
+	return oldActionID;
 }
 
 void KeyboardWnd::initialiseButtons(const sf::Font& font)

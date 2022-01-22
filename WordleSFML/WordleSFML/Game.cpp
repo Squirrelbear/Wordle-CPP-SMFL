@@ -9,7 +9,7 @@ Game::Game(const sf::IntRect & gameBounds, const sf::Font & font)
 	_randomEngine = std::default_random_engine(seed);
 	_terminateGame = false;
 	_activeInterface = nullptr;
-	_activeInterface = new PuzzleWnd(gameBounds, font, _randomEngine);
+	_activeInterface = new PuzzleWnd(gameBounds, font, "YEAST");
 }
 
 Game::~Game()
