@@ -9,6 +9,7 @@ Game::Game(const sf::IntRect & gameBounds, const sf::Font & font)
 	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 	_randomEngine = std::default_random_engine(seed);
 	_wordDatabase = std::make_unique<WordDatabase>(_randomEngine);
+	_playHistory = std::make_unique<PlayHistory>("../Saves/save.dat");
 
 	_terminateGame = false;
 	_activeInterface = nullptr;
@@ -44,7 +45,10 @@ void Game::update(const float deltaTime)
 			auto guessGrid = dynamic_cast<PuzzleWnd*>(_activeInterface)->getGuessGrid();
 			auto rules = guessGrid.getAllRules();
 			std::string solution = guessGrid.getSolution();
-			_activeOverlay = new PostGameWnd(_bounds, _font, solution, guessGrid.isSolved(), rules.size());
+			if (guessGrid.isSolved()) {
+				_playHistory->insertHistory(rules.size() - 1);
+			}
+			_activeOverlay = new PostGameWnd(_bounds, _font, solution, guessGrid.isSolved(), rules.size(), _playHistory);
 		}
 	}
 }

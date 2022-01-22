@@ -2,6 +2,7 @@
 #include "WndInterface.h"
 #include "Button.h"
 #include "HorizontalHistogram.h"
+#include "PlayHistory.h"
 
 /*
 PostGameWnd class:
@@ -15,7 +16,7 @@ class PostGameWnd :
 {
 public:
 	// Initialises the window with details about the game and a choice to start a new game or quit.
-	PostGameWnd(const sf::IntRect& bounds, const sf::Font& font, const std::string& solution, const bool wonGame, const int attempts);
+	PostGameWnd(const sf::IntRect& bounds, const sf::Font& font, const std::string& solution, const bool wonGame, const int attempts, const std::unique_ptr<PlayHistory>& playHistory);
 	virtual ~PostGameWnd() = default;
 
 	// Does nothing

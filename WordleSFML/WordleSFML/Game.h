@@ -2,6 +2,7 @@
 #include "WndInterface.h"
 #include <random>
 #include "WordDatabase.h"
+#include "PlayHistory.h"
 
 /*
 Game class:
@@ -56,4 +57,7 @@ private:
 
 	// Collection of words
 	std::unique_ptr<WordDatabase> _wordDatabase;
+
+	// The player's saved history
+	std::unique_ptr<PlayHistory> _playHistory;
 };

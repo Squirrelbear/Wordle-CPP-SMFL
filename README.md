@@ -17,8 +17,6 @@ You can play the game by either clicking on the keys at the bottom or by typing 
 
 <img src="./images/image01.jpg">
 
-# TODO
+<img src="./images/image02.jpg">
 
-Currently the game has a number of features I am intending to still implement:
-* End of attempts window (currently does nothing if you fail in the 6 attempts or automatically goes to a new word if you solve it).
-* Storing of scores for words.
+<img src="./images/image03.jpg">
