@@ -42,6 +42,15 @@ public:
 	// Check if the solution has been reached
 	bool isSolved() const;
 
+	// Check if the user has run out of guesses
+	bool hasMoreGuesses() const;
+
+	// Gets expressions for all the rules for solving based on guesses
+	std::vector<std::string> getAllRules() const;
+
+	// Get and reset the changed via keys state.
+	bool getKeyCheckReset();
+
 private:
 	// The collection of letters
 	std::vector<std::vector<PuzzleLetter>> _guessLetters;
@@ -54,6 +63,9 @@ private:
 	
 	// When true it means the solution has been found.
 	bool _solved;
+
+	// Used keys to check
+	bool _usedKeyCheck;
 
 	// The solution to check against
 	const std::string _solution;

@@ -41,6 +41,9 @@ public:
 	// Gets the value of actionID and resets it to default -1.
 	int getActionIDReset();
 
+	// Applies rule colours to keyboard keys
+	void applyRules(std::vector<std::string> rules);
+
 private:
 	// List of buttons on the keyboard
 	std::vector<Button> _buttons;

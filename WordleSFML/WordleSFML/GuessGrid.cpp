@@ -1,4 +1,5 @@
 #include "GuessGrid.h"
+#include <sstream>
 
 GuessGrid::GuessGrid(const sf::IntRect & bounds, const sf::Font & font, const std::string& solution, const int maxGuesses)
 	: WndInterface(bounds), _solution(solution)
@@ -7,6 +8,7 @@ GuessGrid::GuessGrid(const sf::IntRect & bounds, const sf::Font & font, const st
 	_solved = false;
 	_currentWordIndex = 0;
 	_insertPosition = 0;
+	_usedKeyCheck = false;
 }
 
 void GuessGrid::draw(sf::RenderWindow & renderWindow) const
@@ -29,6 +31,7 @@ void GuessGrid::handleKeyInput(const sf::Keyboard::Key key)
 	}
 	else if (key == sf::Keyboard::Enter) {
 		checkSolution();
+		_usedKeyCheck = true;
 	}
 }
 
@@ -113,6 +116,40 @@ void GuessGrid::checkSolution()
 bool GuessGrid::isSolved() const
 {
 	return _solved;
+}
+
+bool GuessGrid::hasMoreGuesses() const
+{
+	return _currentWordIndex < _guessLetters.size();
+}
+
+std::vector<std::string> GuessGrid::getAllRules() const
+{
+	std::vector<std::string> rules;
+
+	// Only previous word attempts
+	for (int i = 0; i < _currentWordIndex; i++) {
+		std::stringstream ruleStream;
+		for (int j = 0; j < _solution.length(); j++) {
+			if (_guessLetters.at(i).at(j).getSolutionState() == PuzzleLetter::SolutionState::CORRECT) {
+				ruleStream << "*";
+			}
+			else if (_guessLetters.at(i).at(j).getSolutionState() == PuzzleLetter::SolutionState::WRONG_POS) {
+				ruleStream << "#";
+			}
+			ruleStream << _guessLetters.at(i).at(j).getLetter();
+		}
+		rules.emplace_back(ruleStream.str());
+	}
+
+	return rules;
+}
+
+bool GuessGrid::getKeyCheckReset()
+{
+	bool result = _usedKeyCheck;
+	_usedKeyCheck = false;
+	return result;
 }
 
 void GuessGrid::initialiseAllGuesses(const sf::Font & font, const int wordLength, const int maxGuesses)

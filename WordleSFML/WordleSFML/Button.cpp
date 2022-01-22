@@ -14,6 +14,7 @@ Button::Button(const sf::IntRect & bounds, const std::string & text, const int a
 	_background.setOutlineThickness(1);
 	_background.setOutlineColor(sf::Color::White);
 
+	_colourID = 0;
 	_isHovered = false;
 }
 
@@ -42,4 +43,22 @@ bool Button::isPositionInside(const sf::Vector2i & mousePosition) const
 void Button::setBackgroundColour(const sf::Color & colour)
 {
 	_background.setFillColor(colour);
+}
+
+void Button::applyColourID(const int colourID)
+{
+	if (colourID > _colourID) {
+		_colourID = colourID;
+		switch (_colourID) {
+		case 1:
+			_background.setFillColor(sf::Color(40, 40, 40));
+			break;
+		case 2:
+			_background.setFillColor(sf::Color(141, 141, 74));
+			break;
+		case 3:
+			_background.setFillColor(sf::Color(93, 141, 74));
+			break;
+		}
+	}
 }

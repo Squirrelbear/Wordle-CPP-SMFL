@@ -39,6 +39,9 @@ public:
 	// Changes the background colour to the specified colour.
 	void setBackgroundColour(const sf::Color& colour);
 
+	// Uses preset colours to change the background colour only if the specified colourID is greater than the current value.
+	void applyColourID(const int colourID);
+
 private:
 	// The bounds of the rectangle used for isPositionInside().
 	sf::IntRect _bounds;
@@ -57,5 +60,8 @@ private:
 
 	// Text Render
 	sf::Text _textVisual;
+
+	// The current colour ID set via applyColourID.
+	int _colourID;
 };
 

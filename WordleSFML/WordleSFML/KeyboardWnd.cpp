@@ -38,6 +38,32 @@ int KeyboardWnd::getActionIDReset()
 	return oldActionID;
 }
 
+void KeyboardWnd::applyRules(std::vector<std::string> rules)
+{
+	for (auto rule : rules) {
+		for (int i = 0, pos = 0; i < rule.length(); ++i, ++pos) {
+			int colourID = 1;
+			// Exists at position with exact match
+			if (rule.at(i) == '*') {
+				i++;
+				colourID = 3;
+			}
+			// One or more in string but not at pos
+			else if (rule.at(i) == '#') {
+				i++;
+				colourID = 2;
+			}
+
+			int letterCasted = static_cast<int>(rule.at(i));
+			auto button = std::find_if(_buttons.begin(), _buttons.end(),
+				[&](Button b) { return b.getActionID() == letterCasted; });
+			if (button != _buttons.end()) {
+				button->applyColourID(colourID);
+			}
+		}
+	}
+}
+
 void KeyboardWnd::initialiseButtons(const sf::Font& font)
 {
 	std::vector<std::string> buttonText{ "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Check", "Z", "X", "C", "V", "B", "N", "M", "<" };
