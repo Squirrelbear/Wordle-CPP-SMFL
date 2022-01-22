@@ -1,7 +1,7 @@
 # Wordle C++ with SMFL
 
 Wordle is a popular word game found at: https://www.powerlanguage.co.uk/wordle/
-In the original game there is one set word shared for every person each day. This version of the game lets you try and guess many different words as you want. 
+<br>In the original game there is one set word shared for every person each day. This version of the game lets you try and guess many different words as you want. 
 
 * Word data source: https://www-cs-faculty.stanford.edu/~knuth/sgb.html
 
