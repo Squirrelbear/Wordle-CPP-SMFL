@@ -48,6 +48,9 @@ private:
 	// Reference to the current active interface.
 	WndInterface* _activeInterface;
 
+	// Reference to the current active overlay if one exists.
+	WndInterface* _activeOverlay;
+
 	// When true, the game should end.
 	bool _terminateGame;
 

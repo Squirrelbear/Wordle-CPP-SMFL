@@ -15,7 +15,7 @@ PuzzleWnd::~PuzzleWnd()
 
 void PuzzleWnd::update(const float deltaTime)
 {
-	if (_guessGrid.isSolved()) {
+	if (_guessGrid.isSolved() || !_guessGrid.hasMoreGuesses()) {
 		_currentState = WndResultState::Finished;
 	}
 }

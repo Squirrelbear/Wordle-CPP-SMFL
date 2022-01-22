@@ -127,6 +127,7 @@
     <ClCompile Include="GuessGrid.cpp" />
     <ClCompile Include="KeyboardWnd.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PostGameWnd.cpp" />
     <ClCompile Include="PuzzleLetter.cpp" />
     <ClCompile Include="PuzzleWnd.cpp" />
     <ClCompile Include="SFMLGame.cpp" />
@@ -137,6 +138,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GuessGrid.h" />
     <ClInclude Include="KeyboardWnd.h" />
+    <ClInclude Include="PostGameWnd.h" />
     <ClInclude Include="PuzzleLetter.h" />
     <ClInclude Include="PuzzleWnd.h" />
     <ClInclude Include="SFMLGame.h" />
