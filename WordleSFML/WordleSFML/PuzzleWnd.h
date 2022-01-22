@@ -18,10 +18,10 @@ public:
 	PuzzleWnd(const sf::IntRect& bounds, const sf::Font& font, const std::string& solution);
 	virtual ~PuzzleWnd();
 
-	// TODO
+	// Updates the current state of the window.
 	virtual void update(const float deltaTime) override;
 
-	// TODO
+	// Draws all the components of the PuzzleWnd.
 	virtual void draw(sf::RenderWindow & renderWindow) const override;
 
 	/**
@@ -39,10 +39,33 @@ public:
 	 */
 	virtual void handleMouseMove(const sf::Vector2i& mousePosition) override;
 
+	/**
+	 * Handles the key input from a keyboard action.
+	 *
+	 * @param keyCode The key that was pressed.
+	 */
+	virtual void handleKeyInput(const sf::Keyboard::Key key) override;
+
+	// Gets the state to check if the window is requesting an action.
+	WndResultState getResultState() const override;
+
 private:
+	// Reference to the font used for elements on the window.
 	const sf::Font& _font;
-	sf::Text testText;
+
+	// Title text
+	sf::Text _gameTitle;
+
+	// Author text
+	sf::Text _author;
+
+	// The keyboard used for clicking for input
 	KeyboardWnd _keyboard;
+
+	// The grid of guesses where the keyboards input goes.
 	GuessGrid _guessGrid;
+
+	// The current state of this window. Changes to finished when ready to close.
+	WndResultState _currentState;
 };
 

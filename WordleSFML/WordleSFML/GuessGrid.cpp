@@ -18,6 +18,96 @@ void GuessGrid::draw(sf::RenderWindow & renderWindow) const
 	}
 }
 
+void GuessGrid::handleKeyInput(const sf::Keyboard::Key key)
+{
+	switch (key) {
+		case sf::Keyboard::Backspace:
+			backSpace();
+			break;
+		case sf::Keyboard::Enter:
+			checkSolution();
+			break;
+		case sf::Keyboard::Key::A:
+			tryInsertLetter('A');
+			break;
+		case sf::Keyboard::Key::B:
+			tryInsertLetter('B');
+			break;
+		case sf::Keyboard::Key::C:
+			tryInsertLetter('C');
+			break;
+		case sf::Keyboard::Key::D:
+			tryInsertLetter('D');
+			break;
+		case sf::Keyboard::Key::E:
+			tryInsertLetter('E');
+			break;
+		case sf::Keyboard::Key::F:
+			tryInsertLetter('F');
+			break;
+		case sf::Keyboard::Key::G:
+			tryInsertLetter('G');
+			break;
+		case sf::Keyboard::Key::H:
+			tryInsertLetter('H');
+			break;
+		case sf::Keyboard::Key::I:
+			tryInsertLetter('I');
+			break;
+		case sf::Keyboard::Key::J:
+			tryInsertLetter('J');
+			break;
+		case sf::Keyboard::Key::K:
+			tryInsertLetter('K');
+			break;
+		case sf::Keyboard::Key::L:
+			tryInsertLetter('L');
+			break;
+		case sf::Keyboard::Key::M:
+			tryInsertLetter('M');
+			break;
+		case sf::Keyboard::Key::N:
+			tryInsertLetter('N');
+			break;
+		case sf::Keyboard::Key::O:
+			tryInsertLetter('O');
+			break;
+		case sf::Keyboard::Key::P:
+			tryInsertLetter('P');
+			break;
+		case sf::Keyboard::Key::Q:
+			tryInsertLetter('Q');
+			break;
+		case sf::Keyboard::Key::R:
+			tryInsertLetter('R');
+			break;
+		case sf::Keyboard::Key::S:
+			tryInsertLetter('S');
+			break;
+		case sf::Keyboard::Key::T:
+			tryInsertLetter('T');
+			break;
+		case sf::Keyboard::Key::U:
+			tryInsertLetter('U');
+			break;
+		case sf::Keyboard::Key::V:
+			tryInsertLetter('V');
+			break;
+		case sf::Keyboard::Key::W:
+			tryInsertLetter('W');
+			break;
+		case sf::Keyboard::Key::X:
+			tryInsertLetter('X');
+			break;
+		case sf::Keyboard::Key::Y:
+			tryInsertLetter('Y');
+			break;
+		case sf::Keyboard::Key::Z:
+			tryInsertLetter('Z');
+			break;
+	}
+}
+
 void GuessGrid::tryInsertLetter(const char letter)
 {
 	// If max guesses reached, solved, or current guess is full do nothing.
@@ -94,6 +184,11 @@ void GuessGrid::checkSolution()
 	if (solveCount == _solution.length()) {
 		_solved = true;
 	}
+}
+
+bool GuessGrid::isSolved() const
+{
+	return _solved;
 }
 
 void GuessGrid::initialiseAllGuesses(const sf::Font & font, const int wordLength, const int maxGuesses)

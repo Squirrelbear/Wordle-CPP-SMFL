@@ -13,11 +13,14 @@ Manages a collection of words.
 class WordDatabase
 {
 public:
+	// Initialises the word database with the associated file
 	WordDatabase(std::default_random_engine& randomEngine);
 	virtual ~WordDatabase() = default;
 
+	// Returns true if the word specified is a word in the database
 	bool isValidWord(const std::string& word) const;
 
+	// Returns a random word from the database.
 	std::string getRandomWord() const;
 
 private:

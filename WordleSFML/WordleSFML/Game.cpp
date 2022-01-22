@@ -25,6 +25,10 @@ void Game::update(const float deltaTime)
 {
 	if (_activeInterface != nullptr) {
 		_activeInterface->update(deltaTime);
+		if (_activeInterface->getResultState() == WndResultState::Finished) {
+			delete _activeInterface;
+			_activeInterface = new PuzzleWnd(_bounds, _font, _wordDatabase->getRandomWord());
+		}
 	}
 }
 

@@ -2,10 +2,18 @@
 #include "WndInterface.h"
 #include "PuzzleLetter.h"
 
+/*
+GuessGrid class:
+Shows a grid of guesses with methods to insert or remove letters for the current guess.
+
+@author: Peter Mitchell
+@version: 2022.1
+*/
 class GuessGrid :
 	public WndInterface
 {
 public:
+	// Initialises the full grid as an empty set of elements waiting to be filled.
 	GuessGrid(const sf::IntRect& bounds, const sf::Font& font, const std::string& solution, const int maxGuesses);
 	virtual ~GuessGrid() = default;
 
@@ -15,6 +23,13 @@ public:
 	// Draws the grid of guessed letters.
 	virtual void draw(sf::RenderWindow & renderWindow) const override;
 
+	/**
+	 * Handles the key input from a keyboard action.
+	 *
+	 * @param keyCode The key that was pressed.
+	 */
+	virtual void handleKeyInput(const sf::Keyboard::Key key) override;
+
 	// Inserts the specified letter if there is room in the current attempt.
 	void tryInsertLetter(const char letter);
 
@@ -23,6 +38,9 @@ public:
 
 	// Tests the solution 
 	void checkSolution();
+
+	// Check if the solution has been reached
+	bool isSolved() const;
 
 private:
 	// The collection of letters
