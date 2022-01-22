@@ -122,13 +122,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="KeyboardWnd.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PuzzleWnd.cpp" />
     <ClCompile Include="SFMLGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="KeyboardWnd.h" />
     <ClInclude Include="PuzzleWnd.h" />
     <ClInclude Include="SFMLGame.h" />
     <ClInclude Include="WndInterface.h" />

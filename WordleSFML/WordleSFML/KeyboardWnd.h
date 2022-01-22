@@ -1,14 +1,13 @@
 #pragma once
 #include "WndInterface.h"
-#include <random>
-#include "KeyboardWnd.h"
+#include "Button.h"
 
-class PuzzleWnd :
+class KeyboardWnd :
 	public WndInterface
 {
 public:
-	PuzzleWnd(const sf::IntRect& bounds, const sf::Font& font, std::default_random_engine& randomEngine);
-	virtual ~PuzzleWnd();
+	KeyboardWnd(const sf::IntRect& bounds, const sf::Font& font);
+	virtual ~KeyboardWnd();
 
 	// Inherited via WndInterface
 	virtual void update(const float deltaTime) override;
@@ -30,9 +29,8 @@ public:
 	virtual void handleMouseMove(const sf::Vector2i& mousePosition) override;
 
 private:
-	const sf::Font& _font;
-	std::default_random_engine& _randomEngine;
-	sf::Text testText;
-	KeyboardWnd _keyboard;
+	std::vector<Button> _buttons;
+
+	void initialiseButtons(const sf::Font& font);
 };
 

@@ -27,6 +27,12 @@
     <ClCompile Include="PuzzleWnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SFMLGame.h">
@@ -39,6 +45,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PuzzleWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardWnd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
