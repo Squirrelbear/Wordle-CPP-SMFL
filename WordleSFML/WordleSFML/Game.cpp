@@ -7,9 +7,11 @@ Game::Game(const sf::IntRect & gameBounds, const sf::Font & font)
 {
 	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 	_randomEngine = std::default_random_engine(seed);
+	_wordDatabase = std::make_unique<WordDatabase>(_randomEngine);
+
 	_terminateGame = false;
 	_activeInterface = nullptr;
-	_activeInterface = new PuzzleWnd(gameBounds, font, "YEAST");
+	_activeInterface = new PuzzleWnd(gameBounds, font, _wordDatabase->getRandomWord());
 }
 
 Game::~Game()

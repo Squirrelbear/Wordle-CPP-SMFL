@@ -130,6 +130,7 @@
     <ClCompile Include="PuzzleLetter.cpp" />
     <ClCompile Include="PuzzleWnd.cpp" />
     <ClCompile Include="SFMLGame.cpp" />
+    <ClCompile Include="WordDatabase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
@@ -140,6 +141,7 @@
     <ClInclude Include="PuzzleWnd.h" />
     <ClInclude Include="SFMLGame.h" />
     <ClInclude Include="WndInterface.h" />
+    <ClInclude Include="WordDatabase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

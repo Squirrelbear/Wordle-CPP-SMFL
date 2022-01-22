@@ -1,6 +1,7 @@
 #pragma once
 #include "WndInterface.h"
 #include <random>
+#include "WordDatabase.h"
 
 /*
 Game class:
@@ -49,4 +50,7 @@ private:
 
 	// When true, the game should end.
 	bool _terminateGame;
+
+	// Collection of words
+	std::unique_ptr<WordDatabase> _wordDatabase;
 };

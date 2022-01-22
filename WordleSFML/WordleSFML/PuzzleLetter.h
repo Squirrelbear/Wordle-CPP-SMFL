@@ -1,10 +1,8 @@
 #include <SFML/Graphics.hpp>
 
 /**
- * Button class:
- * Defines a simple button consisting of a rectangle region,
- * some text to centre in it, a hover state, and an
- * actionID that is available to give the button context.
+ * PuzzleLetter class:
+ * Defines a letter that is drawn in a box.
  *
  * @author Peter Mitchell
  * @version 2022.1
@@ -12,6 +10,9 @@
 class PuzzleLetter
 {
 public:
+	// Defines the state used for solutions
+	enum SolutionState { NO_STATE, CORRECT, WRONG_POS };
+
 	/**
 	* Defaults to an empty letter at the position.
 	*/
@@ -27,8 +28,11 @@ public:
 	// Sets the letter to the specified letter.
 	void setLetter(const char letter);
 
-	// Changes the background colour to the specified colour.
-	void setBackgroundColour(const sf::Color& colour);
+	// Changes the background colour and stores the solution state.
+	void setSolutionState(const SolutionState& solutionState);
+
+	// Get solution state of this element
+	SolutionState getSolutionState() const;
 
 private:
 	// The bounds of the rectangle used for isPositionInside().
@@ -42,4 +46,10 @@ private:
 
 	// Text Render
 	sf::Text _textVisual;
+
+	// The current solution state of this letter.
+	SolutionState _currentState;
+
+	// Changes the background colour to the specified colour.
+	void setBackgroundColour(const sf::Color& colour);
 };

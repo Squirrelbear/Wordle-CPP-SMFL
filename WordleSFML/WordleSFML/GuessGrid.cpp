@@ -47,16 +47,51 @@ void GuessGrid::checkSolution()
 		return;
 
 	int solveCount = 0;
-	for (int i = 0; i < _guessLetters.at(_currentWordIndex).size(); i++) {
-		if (_guessLetters.at(_currentWordIndex).at(i).getLetter() == _solution.at(i)) {
-			_guessLetters.at(_currentWordIndex).at(i).setBackgroundColour(sf::Color(93, 141, 74));
+	for (int i = 0; i < _solution.length(); i++) {
+		char guess = _guessLetters.at(_currentWordIndex).at(i).getLetter();
+		if (guess == _solution.at(i)) {
+			_guessLetters.at(_currentWordIndex).at(i).setSolutionState(PuzzleLetter::SolutionState::CORRECT);
 			++solveCount;
+		}
+		else {
+			// If the letter is in the solution
+			int requiredLetterCount = std::count(_solution.begin(), _solution.end(), guess);
+			if (requiredLetterCount > 0) {
+				// Find the matching positions for incorrect placement and the number of correct placements.
+				int correctPositionThisLetter = 0;
+				std::vector<int> outOfPositionPositions;
+				for (int j = 0; j < _guessLetters.at(_currentWordIndex).size(); j++) {
+					if (guess == _guessLetters.at(_currentWordIndex).at(j).getLetter()) {
+						if (guess == _solution.at(j)) {
+							correctPositionThisLetter++;
+						}
+						else {
+							outOfPositionPositions.emplace_back(j);
+						}
+					}
+				}
+				// Remove excessive letters
+				while (correctPositionThisLetter + outOfPositionPositions.size() > requiredLetterCount) {
+					outOfPositionPositions.pop_back();
+				}
+				
+				// Flag as wrong position only if within reaching the minimum.
+				if (std::find(outOfPositionPositions.begin(), outOfPositionPositions.end(), i) != outOfPositionPositions.end()) {
+					_guessLetters.at(_currentWordIndex).at(i).setSolutionState(PuzzleLetter::SolutionState::WRONG_POS);
+				}
+				else {
+					_guessLetters.at(_currentWordIndex).at(i).setSolutionState(PuzzleLetter::SolutionState::NO_STATE);
+				}
+			}
+			else {
+				_guessLetters.at(_currentWordIndex).at(i).setSolutionState(PuzzleLetter::SolutionState::NO_STATE);
+			}
 		}
 	}
 
 	++_currentWordIndex;
 	_insertPosition = 0;
-	if (solveCount == _guessLetters.at(_currentWordIndex).size()) {
+	if (solveCount == _solution.length()) {
 		_solved = true;
 	}
 }

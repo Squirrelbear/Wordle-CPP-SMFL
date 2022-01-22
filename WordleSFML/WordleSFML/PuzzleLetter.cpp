@@ -14,6 +14,8 @@ PuzzleLetter::PuzzleLetter(const sf::IntRect & bounds, const sf::Font & font)
 	_background.setFillColor(sf::Color(5, 5, 5));
 	_background.setOutlineThickness(1);
 	_background.setOutlineColor(sf::Color::White);
+
+	_currentState = SolutionState::NO_STATE;
 }
 
 void PuzzleLetter::draw(sf::RenderWindow & renderWindow) const
@@ -31,6 +33,27 @@ void PuzzleLetter::setLetter(const char letter)
 {
 	_letter = letter;
 	_textVisual.setString(letter);
+}
+
+void PuzzleLetter::setSolutionState(const SolutionState & solutionState)
+{
+	_currentState = solutionState;
+	switch (_currentState) {
+	case SolutionState::NO_STATE:
+		_background.setFillColor(sf::Color(40, 40, 40));
+		break;
+	case SolutionState::CORRECT:
+		_background.setFillColor(sf::Color(93, 141, 74));
+		break;
+	case SolutionState::WRONG_POS:
+		_background.setFillColor(sf::Color(141, 141, 74));
+		break;
+	}
+}
+
+PuzzleLetter::SolutionState PuzzleLetter::getSolutionState() const
+{
+	return _currentState;
 }
 
 void PuzzleLetter::setBackgroundColour(const sf::Color & colour)
