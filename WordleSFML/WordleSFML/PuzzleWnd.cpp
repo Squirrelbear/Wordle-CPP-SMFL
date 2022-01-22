@@ -56,6 +56,11 @@ void PuzzleWnd::handleKeyInput(const sf::Keyboard::Key key)
 	}
 }
 
+const GuessGrid & PuzzleWnd::getGuessGrid() const
+{
+	return _guessGrid;
+}
+
 WndResultState PuzzleWnd::getResultState() const
 {
 	return _currentState;

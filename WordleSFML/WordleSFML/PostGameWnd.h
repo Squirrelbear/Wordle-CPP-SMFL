@@ -53,5 +53,11 @@ private:
 
 	// Background to cover all elements
 	std::unique_ptr<sf::RectangleShape> _fullScreenBackground;
+
+	// Title text
+	std::unique_ptr<sf::Text> _titleText;
+
+	// Text showing the solution
+	std::unique_ptr<sf::Text> _solutionText;
 };
 

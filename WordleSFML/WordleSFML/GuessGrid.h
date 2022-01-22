@@ -51,6 +51,9 @@ public:
 	// Get and reset the changed via keys state.
 	bool getKeyCheckReset();
 
+	// Gets the solution that the user is matching
+	std::string getSolution() const;
+
 private:
 	// The collection of letters
 	std::vector<std::vector<PuzzleLetter>> _guessLetters;

@@ -46,6 +46,8 @@ public:
 	 */
 	virtual void handleKeyInput(const sf::Keyboard::Key key) override;
 
+	const GuessGrid& getGuessGrid() const;
+
 	// Gets the state to check if the window is requesting an action.
 	WndResultState getResultState() const override;
 

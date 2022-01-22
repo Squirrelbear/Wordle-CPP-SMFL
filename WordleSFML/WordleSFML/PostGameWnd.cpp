@@ -14,15 +14,23 @@ PostGameWnd::PostGameWnd(const sf::IntRect & bounds, const sf::Font & font, cons
 	_background->setOutlineThickness(1);
 	_background->setPosition(bounds.left + bounds.width / 4 + 1, bounds.top + bounds.height / 4 + 1);
 
+	_titleText = std::make_unique<sf::Text>((wonGame ? "You solved it!" : "Better Luck Next Time!"), font, 40);
+	_titleText->setPosition(sf::Vector2f(bounds.left + bounds.width / 2 - _titleText->getGlobalBounds().width / 2, bounds.top + bounds.height / 4 + 10));
+	_titleText->setFillColor(wonGame ? sf::Color(93, 141, 74) : sf::Color(230, 93, 74));
+
+	_solutionText = std::make_unique<sf::Text>("Solution: " + solution, font, 30);
+	_solutionText->setPosition(sf::Vector2f(bounds.left + bounds.width / 2 - _solutionText->getGlobalBounds().width / 2, bounds.top + bounds.height / 4 + 10 + 50));
+
 	_buttons.emplace_back(Button(sf::IntRect(bounds.left + bounds.width / 2 - 225, bounds.top + bounds.height * 3 / 4 - 70, 200, 60), "New Word", 0, font));
 	_buttons.emplace_back(Button(sf::IntRect(bounds.left + bounds.width / 2 + 25, bounds.top + bounds.height * 3 / 4 - 70, 200, 60), "Quit", 1, font));
-
 }
 
 void PostGameWnd::draw(sf::RenderWindow & renderWindow) const
 {
 	renderWindow.draw(*_fullScreenBackground);
 	renderWindow.draw(*_background);
+	renderWindow.draw(*_titleText);
+	renderWindow.draw(*_solutionText);
 	for (const auto& button : _buttons) {
 		button.draw(renderWindow);
 	}

@@ -152,6 +152,11 @@ bool GuessGrid::getKeyCheckReset()
 	return result;
 }
 
+std::string GuessGrid::getSolution() const
+{
+	return _solution;
+}
+
 void GuessGrid::initialiseAllGuesses(const sf::Font & font, const int wordLength, const int maxGuesses)
 {
 	int elementHeight = 60;

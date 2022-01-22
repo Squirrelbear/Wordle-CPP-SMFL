@@ -41,7 +41,10 @@ void Game::update(const float deltaTime)
 	else if (_activeInterface != nullptr) {
 		_activeInterface->update(deltaTime);
 		if (_activeInterface->getResultState() == WndResultState::Finished && _activeOverlay == nullptr) {
-			_activeOverlay = new PostGameWnd(_bounds, _font, "WORDLE", true, 6);
+			auto guessGrid = dynamic_cast<PuzzleWnd*>(_activeInterface)->getGuessGrid();
+			auto rules = guessGrid.getAllRules();
+			std::string solution = guessGrid.getSolution();
+			_activeOverlay = new PostGameWnd(_bounds, _font, solution, guessGrid.isSolved(), rules.size());
 		}
 	}
 }
