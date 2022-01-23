@@ -2,11 +2,12 @@
 
 HistogramBar::HistogramBar(const sf::IntRect & bounds, const sf::Font& font, const int title, const int value, const int max)
 {
+	
 	_titleText = std::make_unique<sf::Text>(std::to_string(title), font, 20);
 	_titleText->setPosition(sf::Vector2f(bounds.left, bounds.top + bounds.height/2 - 10));
 	
 	_valueText = std::make_unique<sf::Text>(std::to_string(value), font, 20);
-	int width = (bounds.width - 20) * value / max;
+	int width = max == 0 ? (bounds.width - 20) : (bounds.width - 20) * value / max;
 	if (width < _valueText->getGlobalBounds().width + 20) {
 		width = _valueText->getGlobalBounds().width + 20;
 	}

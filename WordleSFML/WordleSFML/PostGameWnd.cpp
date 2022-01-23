@@ -28,6 +28,15 @@ PostGameWnd::PostGameWnd(const sf::IntRect & bounds, const sf::Font & font, cons
 		bounds.width / 2 - 60, bounds.top + bounds.height * 3 / 4 - 70 - (bounds.top + bounds.height / 4 + 10 + 50 + 40));
 
 	_histogram = std::make_unique<HorizontalHistogram>(histogramRect, font, playHistory->getHistory(), wonGame ? attempts-1 : -1);
+
+	_totalPlayedText = std::make_unique<sf::Text>("Played: " + std::to_string(playHistory->getTotalPlayed()), font, 30);
+	_totalPlayedText->setPosition(sf::Vector2f(30, bounds.top + bounds.height / 2 - 75));
+	_winPercentText = std::make_unique<sf::Text>("Win %: " + std::to_string(playHistory->getWinPercent()), font, 30);
+	_winPercentText->setPosition(sf::Vector2f(30, bounds.top + bounds.height / 2 - 25));
+	_currentStreakText = std::make_unique<sf::Text>("Current Streak: " + std::to_string(playHistory->getCurrentStreak()), font, 30);
+	_currentStreakText->setPosition(sf::Vector2f(30, bounds.top + bounds.height / 2 + 25));
+	_maxStreakText = std::make_unique<sf::Text>("Max Streak: " + std::to_string(playHistory->getMaxStreak()), font, 30);
+	_maxStreakText->setPosition(sf::Vector2f(30, bounds.top + bounds.height / 2 + 75));
 }
 
 void PostGameWnd::draw(sf::RenderWindow & renderWindow) const
@@ -36,6 +45,10 @@ void PostGameWnd::draw(sf::RenderWindow & renderWindow) const
 	renderWindow.draw(*_background);
 	renderWindow.draw(*_titleText);
 	renderWindow.draw(*_solutionText);
+	renderWindow.draw(*_totalPlayedText);
+	renderWindow.draw(*_winPercentText);
+	renderWindow.draw(*_currentStreakText);
+	renderWindow.draw(*_maxStreakText);
 	_histogram->draw(renderWindow);
 	for (const auto& button : _buttons) {
 		button.draw(renderWindow);

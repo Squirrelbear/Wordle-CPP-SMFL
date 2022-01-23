@@ -64,5 +64,17 @@ private:
 
 	// Histogram showing how their result fits with their other victories.
 	std::unique_ptr<HorizontalHistogram> _histogram;
+
+	// Text showing the total number of played games
+	std::unique_ptr<sf::Text> _totalPlayedText;
+
+	// Text showing the win percent
+	std::unique_ptr<sf::Text> _winPercentText;
+
+	// Text showing the current win streak
+	std::unique_ptr<sf::Text> _currentStreakText;
+
+	// Text showing the best win streak
+	std::unique_ptr<sf::Text> _maxStreakText;
 };
 

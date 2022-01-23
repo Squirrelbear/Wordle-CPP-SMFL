@@ -48,6 +48,9 @@ void Game::update(const float deltaTime)
 			if (guessGrid.isSolved()) {
 				_playHistory->insertHistory(rules.size() - 1);
 			}
+			else {
+				_playHistory->insertHistoryLoss();
+			}
 			_activeOverlay = new PostGameWnd(_bounds, _font, solution, guessGrid.isSolved(), rules.size(), _playHistory);
 		}
 	}
