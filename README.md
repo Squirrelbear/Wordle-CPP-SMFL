@@ -7,6 +7,8 @@ Wordle is a popular word game found at: https://www.powerlanguage.co.uk/wordle/
 
 * You can also find my solver at: ([Github Link](https://github.com/Squirrelbear/Wordle-Solver))
 
+* ([Youtube Demo](https://youtu.be/18llxWL9dl4))
+
 Requires the following to compile:
 * SFML 2.5.1 (may work with other versions, but 2.5.1 was used for testing): https://www.sfml-dev.org/download.php
 * C++17 by adding: /std:c++17
