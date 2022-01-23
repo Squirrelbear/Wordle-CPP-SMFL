@@ -15,7 +15,7 @@ HistogramBar::HistogramBar(const sf::IntRect & bounds, const sf::Font& font, con
 	_bar->setFillColor(sf::Color(40, 40, 40));
 	_bar->setPosition(sf::Vector2f(barRect.left, barRect.top));
 
-	_valueText->setPosition(sf::Vector2f(barRect.left + barRect.width - 20, bounds.top + bounds.height / 2 - 13));
+	_valueText->setPosition(sf::Vector2f(barRect.left + barRect.width - _valueText->getGlobalBounds().width - 10, bounds.top + bounds.height / 2 - 13));
 }
 
 void HistogramBar::draw(sf::RenderWindow & renderWindow) const

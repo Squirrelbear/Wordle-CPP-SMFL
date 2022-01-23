@@ -15,13 +15,46 @@ void PlayHistory::insertHistory(const int countToIncrement)
 		return;
 	}
 
+	++_totalWon;
+	++_totalPlayed;
+	++_currentStreak;
+	if (_currentStreak > _maxStreak) {
+		_maxStreak = _currentStreak;
+	}
 	++_playHistory.at(countToIncrement).second;
+	saveFile();
+}
+
+void PlayHistory::insertHistoryLoss()
+{
+	++_totalPlayed;
+	_currentStreak = 0;
 	saveFile();
 }
 
 const std::vector<std::pair<int, int>>& PlayHistory::getHistory() const
 {
 	return _playHistory;
+}
+
+int PlayHistory::getTotalPlayed() const
+{
+	return _totalPlayed;
+}
+
+int PlayHistory::getCurrentStreak() const
+{
+	return _currentStreak;
+}
+
+int PlayHistory::getMaxStreak() const
+{
+	return _maxStreak;
+}
+
+int PlayHistory::getWinPercent() const
+{
+	return _totalWon * 100 / _totalPlayed;
 }
 
 void PlayHistory::loadFile()
@@ -37,12 +70,18 @@ void PlayHistory::loadFile()
 	for (int i = 0; i < 6; i++) {
 		file >> key >> value;
 		if (file.fail()) {
-			std::cout << "Failed to read expected data from save file. Using default values." << std::endl;
+			std::cout << "Failed to read expected data from save file (histogram data). Using default values." << std::endl;
 			initialiseDefault();
 			file.close();
 			return;
 		}
 		_playHistory.emplace_back(std::pair<int, int>(key, value));
+	}
+	file >> _totalPlayed >> _totalWon >> _currentStreak >> _maxStreak;
+
+	if (file.fail()) {
+		std::cout << "Failed to read expected data from save file (streak history). Using default values." << std::endl;
+		initialiseDefault();
 	}
 
 	file.close();
@@ -59,6 +98,7 @@ void PlayHistory::saveFile()
 	for (const auto& element : _playHistory) {
 		file << element.first << " " << element.second << " ";
 	}
+	file << _totalPlayed << " " << _totalWon << " " << _currentStreak << " " << _maxStreak;
 
 	file.close();
 }
@@ -68,4 +108,8 @@ void PlayHistory::initialiseDefault()
 	for (int i = 0; i < 6; i++) {
 		_playHistory.emplace_back(std::pair<int, int>(i+1, 0));
 	}
+	_maxStreak = 0;
+	_currentStreak = 0;
+	_totalPlayed = 0;
+	_totalWon = 0;
 }
