@@ -1,7 +1,7 @@
 #include "PostGameWnd.h"
 
-PostGameWnd::PostGameWnd(const sf::IntRect & bounds, const sf::Font & font, const std::string & solution, const bool wonGame, const int attempts, const std::unique_ptr<PlayHistory>& playHistory)
-	: WndInterface(bounds)
+PostGameWnd::PostGameWnd(const sf::IntRect & bounds, const sf::Font & font, const std::string & solution, const bool wonGame, const int attempts, const std::unique_ptr<PlayHistory>& playHistory, const std::string& shareStr)
+	: WndInterface(bounds), _shareStr(shareStr)
 {
 	_resultState = WndResultState::NothingState;
 
@@ -23,6 +23,10 @@ PostGameWnd::PostGameWnd(const sf::IntRect & bounds, const sf::Font & font, cons
 
 	_buttons.emplace_back(Button(sf::IntRect(bounds.left + bounds.width / 2 - 225, bounds.top + bounds.height * 3 / 4 - 70, 200, 60), "New Word", 0, font));
 	_buttons.emplace_back(Button(sf::IntRect(bounds.left + bounds.width / 2 + 25, bounds.top + bounds.height * 3 / 4 - 70, 200, 60), "Quit", 1, font));
+
+	_buttons.emplace_back(Button(sf::IntRect(bounds.left + bounds.width * 3 / 4 + 25, bounds.top + bounds.height / 2 - 30, 200, 60), "Share", 2, font));
+	_buttons.at(_buttons.size() - 1).setBackgroundColour(sf::Color(93, 141, 74));
+
 
 	sf::IntRect histogramRect = sf::IntRect(bounds.left + bounds.width / 4 + 30, bounds.top + bounds.height / 4 + 10 + 50 + 40 + 10,
 		bounds.width / 2 - 60, bounds.top + bounds.height * 3 / 4 - 70 - (bounds.top + bounds.height / 4 + 10 + 50 + 40));
@@ -64,6 +68,9 @@ void PostGameWnd::handleMousePress(const sf::Vector2i & mousePosition, bool isLe
 			}
 			else if (button.getActionID() == 1) {
 				_resultState = WndResultState::Quit;
+			}
+			else if (button.getActionID() == 2) {
+				sf::Clipboard::setString(_shareStr);
 			}
 		}
 	}

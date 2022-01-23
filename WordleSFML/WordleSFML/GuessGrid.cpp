@@ -157,6 +157,32 @@ std::string GuessGrid::getSolution() const
 	return _solution;
 }
 
+std::string GuessGrid::getShareString() const
+{
+	std::stringstream message;
+	message << "Peter's Custom Wordle Game" << std::endl << "\"" << _solution << "\": ";
+	message << (_solved ? "Solved: " : "Did not solve: ") << (_currentWordIndex) << "/6" << std::endl <<std::endl;
+
+	// generate the puzzle coloured title view
+	for (int i = 0; i < _currentWordIndex; i++) {
+		std::stringstream ruleStream;
+		for (int j = 0; j < _solution.length(); j++) {
+			if (_guessLetters.at(i).at(j).getSolutionState() == PuzzleLetter::SolutionState::CORRECT) {
+				message << ":green_square:";
+			}
+			else if (_guessLetters.at(i).at(j).getSolutionState() == PuzzleLetter::SolutionState::WRONG_POS) {
+				message << ":yellow_square:";
+			}
+			else {
+				message << ":black_large_square:";
+			}
+		}
+		message << std::endl;
+	}
+
+	return message.str();
+}
+
 void GuessGrid::initialiseAllGuesses(const sf::Font & font, const int wordLength, const int maxGuesses)
 {
 	int elementHeight = 60;

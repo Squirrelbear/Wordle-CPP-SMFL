@@ -54,6 +54,9 @@ public:
 	// Gets the solution that the user is matching
 	std::string getSolution() const;
 
+	// Gets a string representing the finished puzzle state.
+	std::string getShareString() const;
+
 private:
 	// The collection of letters
 	std::vector<std::vector<PuzzleLetter>> _guessLetters;

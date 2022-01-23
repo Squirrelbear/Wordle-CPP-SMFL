@@ -17,6 +17,14 @@ You can play the game by either clicking on the keys at the bottom or by typing 
 
 <img src="./images/image01.jpg">
 
+Example victory screen with options to start a new game, quit, or share to clipboard. You can also view stats from how you have been going on the left and via the histogram in the middle.
+
 <img src="./images/image02.jpg">
 
+Similar to the victory screen the loss screen shows no highlighted bar and different coloured title text. You can still share your loss if you wish via the share button.
+
 <img src="./images/image03.jpg">
+
+Using the share button will give you a string that can be pasted into places like Discord or Facebook to share your score. This uses the same tile approach as output by the original Wordle game's share button.
+
+<img src="./images/image04.jpg">
