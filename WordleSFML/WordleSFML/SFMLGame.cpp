@@ -18,7 +18,7 @@ void SFMLGame::gameLoop()
 		sf::Time elapsed = clock.restart();
 		float deltaTime = elapsed.asSeconds();
 		sf::Event event;
-		while (_window.pollEvent(event))
+		if (_window.waitEvent(event))
 		{
 			if (event.type == sf::Event::Closed) {
 				_window.close();
